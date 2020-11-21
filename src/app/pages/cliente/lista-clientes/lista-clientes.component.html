@@ -1,0 +1,81 @@
+
+    <mat-card class="basic-container mat-elevation-z2" fxFlex style="flex: 1 1 100%;min-height:80vh" >
+      <!-- <mat-toolbar style="background-color: white;">
+            <mat-toolbar-row>
+              <div>
+                <a (click)="novo()" mat-button   matTooltip="Criar novo registro">
+                  <mat-icon>add</mat-icon>
+                  <span>Criar</span>
+                </a>
+
+                <a (click)="consultar()" mat-button matTooltip="atualizar">
+                  <mat-icon>refresh</mat-icon>
+                </a>
+
+                <a *ngIf="this.selection.selected.length > 0" (click)="excluirSelecionados()"  mat-button mat-button matTooltip="Excluir registro(s) selecionado(s)">
+                  <mat-icon>delete</mat-icon>
+                </a>
+                <mat-form-field style="width: 700px;font-size: 12px;">
+
+                  <input matInput (keyup)="filtrarGrid($event)" placeholder="filtrar registro...">
+                  <mat-icon>search</mat-icon>
+                </mat-form-field>
+              </div>
+            </mat-toolbar-row>
+
+        </mat-toolbar> -->
+
+        <span layout="row"><hr flex/></span>
+        <mat-card-content class="demo-basic-list">
+
+            <table mat-table class="full-width-table" matSort aria-label="Elements">
+                <!-- Id Column -->clienteId
+                <ng-container matColumnDef="clienteId">
+                  <th mat-header-cell *matHeaderCellDef mat-sort-header>Id</th>
+                  <td mat-cell *matCellDef="let row">{{row.clienteId}}</td>
+                </ng-container>
+
+                <!-- Nome Column -->
+                <ng-container matColumnDef="nome">
+                  <th mat-header-cell *matHeaderCellDef mat-sort-header>Nome</th>
+                  <td mat-cell *matCellDef="let row">{{row.nome}}</td>
+                </ng-container>
+
+                <!-- Email Column -->
+                <ng-container matColumnDef="email">
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header>E-Mail</th>
+                    <td mat-cell *matCellDef="let row">{{row.email}}</td>
+                </ng-container>
+
+
+                <!-- Email Column -->
+                <ng-container matColumnDef="celular">
+                  <th mat-header-cell *matHeaderCellDef mat-sort-header>Celular</th>
+                  <td mat-cell *matCellDef="let row">{{row.celular}}</td>
+              </ng-container>
+
+                <ng-container matColumnDef="action">
+                  <th mat-header-cell *matHeaderCellDef width="8%"> Ações </th>
+                  <td mat-cell *matCellDef="let element">
+                    <button mat-icon-button color="accent" [routerLink]="['../../cliente/', element.clienteId]">
+                      <mat-icon>edit</mat-icon>
+                    </button>
+                    <button mat-icon-button color="warn" (click)="excluir(element.clienteId)">
+                      <mat-icon>highlight_off</mat-icon>
+                    </button>
+                </td>
+            </ng-container>
+                <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+              </table>
+
+              <mat-paginator #paginator
+                  [length]="dataSource?.data.length"
+                  [pageIndex]="0"
+                  [pageSize]="10"
+                  [pageSizeOptions]="[10, 20, 50, 100, 250]">
+              </mat-paginator>
+
+
+        </mat-card-content>
+      </mat-card>

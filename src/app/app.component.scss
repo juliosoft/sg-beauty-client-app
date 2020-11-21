@@ -1,0 +1,9 @@
+/* for sidenav to take a whole page */
+html, body { 
+  margin: 0;
+  height: 100%;
+}
+
+sidenav{
+  width: 200px;
+}
