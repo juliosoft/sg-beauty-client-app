@@ -28,9 +28,19 @@ jobs:
         run: npm install     
       - name: Build
         run: npm run build -- --prod
-      - name: Publish generated content to GitHub Pages
-        uses: tsunematsu21/actions-publish-gh-pages@v1.0.1
+        
+      - name: Git deploy to Heroku
+        # You may pin to the exact commit or the version.
+        # uses: onekiloparsec/heroku-node-deploy-subfolder@2e8f857249dd4915d62689c96ce32e16b7be5a44
+        uses: onekiloparsec/heroku-node-deploy-subfolder@v1.0.4
         with:
-          dir: dist
-          branch: gh-pages
-          token: ${{ secrets.ACCESS_TOKEN }}
+          # Your Heroku API key. This will be used for authentication. You can find it in your Heroku account settings
+          api_key: ffa9ea1b-c6ec-4dde-b434-f75e12238161
+          # The email of your Heroku account.
+          email: jcmail.am@gmail.com
+          # The app name to use for deploying/updating
+          app_name: sg-beauty-client-app
+          # The branch that you would like to deploy to Heroku
+          branch: master
+          # The subfolder where your built code is sitted, e.g. `dist`.
+          subfolder: dist
